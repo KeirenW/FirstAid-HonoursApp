@@ -12,4 +12,8 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
+
+  async NavigateToHome() {
+    this.router.navigateByUrl("/app/tabs/tab1")
+  }
 }
