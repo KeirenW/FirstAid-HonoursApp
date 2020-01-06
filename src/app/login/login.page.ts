@@ -21,7 +21,7 @@ export class LoginPage implements OnInit {
   loginWithCredentails() {
     console.log('Form submitted!');
     /**
-     * HTTP request to DB with SALTED AND HASHED CREDENTIALS
+     * HTTP request to DB with SALTED AND HASHED CREDENTIALS by credentials service
      * Recieve session ID
      */
   }
