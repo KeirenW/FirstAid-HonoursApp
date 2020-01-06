@@ -5,5 +5,15 @@
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="NavigateToHome()">Home</ion-button>
+  <form (ngSubmit)="login()">
+    <ion-item>
+      <ion-label>Email address</ion-label>
+      <ion-input type="email" [(ngModel)]="credentials.username" name="username"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Password</ion-label>
+      <ion-input type="password" [(ngModel)]="credentials.password" name="password"></ion-input>
+    </ion-item>
+    <ion-button type="submit">Login</ion-button>
+  </form>
 </ion-content>

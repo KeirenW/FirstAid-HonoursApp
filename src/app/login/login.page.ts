@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+  credentials = {};
 
   constructor(private router:Router) { }
 
@@ -15,5 +16,9 @@ export class LoginPage implements OnInit {
 
   async NavigateToHome() {
     this.router.navigateByUrl("/app/tabs/tab1")
+  }
+  loginWithCredentails() {
+    console.log('Form submitted!');
+  }
   }
 }
