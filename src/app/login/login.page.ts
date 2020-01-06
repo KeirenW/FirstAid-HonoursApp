@@ -17,8 +17,23 @@ export class LoginPage implements OnInit {
   async NavigateToHome() {
     this.router.navigateByUrl("/app/tabs/tab1")
   }
+
   loginWithCredentails() {
     console.log('Form submitted!');
+    /**
+     * HTTP request to DB with SALTED AND HASHED CREDENTIALS
+     * Recieve session ID
+     */
   }
+
+  loginWithSessionID() {
+    /**
+     * Check session ID against stored value.
+     * 
+     * Possibly store list of open sessions per user,
+     * allows user to revoke access to specific devices.
+     * 
+     * Need to also send a Device ID when loging in with credentials.
+     */
   }
 }
