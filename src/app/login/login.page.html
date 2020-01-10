@@ -1,19 +1,30 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <form (ngSubmit)="login()">
-    <ion-item>
-      <ion-label>Email address</ion-label>
-      <ion-input type="email" [(ngModel)]="credentials.username" name="username"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="credentials.password" name="password"></ion-input>
-    </ion-item>
-    <ion-button type="submit">Login</ion-button>
-  </form>
+  <ion-grid>
+    <!-- <ion-row>
+      <ion-col offset="5" size="2" class="ion-align-self-center">
+        <img src="assets/shapes.svg" width="128" height="128">
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col offset="4" size="4" class="ion-align-self-center">
+        <ion-card>
+          <form (ngSubmit)="loginWithCredentails()">
+            <ion-item>
+              <ion-label>
+                <ion-icon name="contact"></ion-icon>
+              </ion-label>
+              <ion-input type="email" [(ngModel)]="credentials.username" name="username" placeholder="Email address"></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label>
+                <ion-icon name="key"></ion-icon>
+              </ion-label>
+              <ion-input type="password" [(ngModel)]="credentials.password" name="password" placeholder="Password"></ion-input>
+            </ion-item>
+            <ion-button type="submit">Login</ion-button>
+          </form>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
