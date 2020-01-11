@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl("/app/tabs/tab1")
   }
 
-  loginWithCredentails() {
+  loginSubmitted() {
     console.log('Form submitted!');
     /**
      * HTTP request to DB with SALTED AND HASHED CREDENTIALS by credentials service
