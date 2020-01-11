@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -6,7 +7,7 @@ import { Injectable } from '@angular/core';
 export class SessionService {
   user: IUser;
 
-  constructor() {
+  constructor(private http: HttpClient) {
     this.user = {
       username: '',
       name: '',
