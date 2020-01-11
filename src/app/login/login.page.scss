@@ -3,7 +3,7 @@ ion-grid {
 }
 
 ion-content {
-    --background: url(../../assets/bg.png);
+    --background: var(--ion-color-dark)
 }
 
 ion-row {
