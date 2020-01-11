@@ -1,9 +1,16 @@
+ion-title {
+    line-height: 50px;
+    background: url(../../assets/logo.svg) no-repeat left center;
+    background-size: 60px;
+    padding-left: 50px;
+}
+
 ion-grid {
     height: 100%;
 }
 
 ion-content {
-    --background: var(--ion-color-dark)
+    --background: var(--ion-color-dark-tint)
 }
 
 ion-row {
@@ -11,5 +18,14 @@ ion-row {
 }
 
 ion-card {
-    --background: #fff;
+    --background: var(--ion-color-light);
+}
+
+ion-item {
+    margin-bottom: 1em;
+}
+
+.signUp {
+    color: var(--ion-color-primary);
+    text-decoration: none;
 }
