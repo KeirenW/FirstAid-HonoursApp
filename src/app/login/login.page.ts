@@ -7,9 +7,14 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  credentials = {};
+  credentials: ICredentials;
 
-  constructor(private router:Router) { }
+  constructor(private router:Router) {
+    this.credentials = {
+      username: '',
+      password: ''
+    };
+  }
 
   ngOnInit() {
   }
@@ -21,9 +26,11 @@ export class LoginPage implements OnInit {
   loginSubmitted() {
     console.log('Form submitted!');
     /**
-     * HTTP request to DB with SALTED AND HASHED CREDENTIALS by credentials service
+     * HTTP request to DB with SALTED AND HASHED CREDENTIALS by credentials service (npm install --save simple-crypto-js)
      * Recieve session ID
      */
+    console.log('Username: ', this.credentials.username);
+    console.log('Password: ', this.credentials.password);
   }
 
   loginWithSessionID() {
@@ -36,4 +43,9 @@ export class LoginPage implements OnInit {
      * Need to also send a Device ID when loging in with credentials.
      */
   }
+}
+
+interface ICredentials {
+  username: String,
+  password: String;
 }
