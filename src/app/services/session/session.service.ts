@@ -19,7 +19,7 @@ export class SessionService {
     return this.user.username;
   }
 
-  setUsername(username: String) {
+  setUsername(username: string) {
     this.user.username = username;
   }
 
@@ -27,7 +27,7 @@ export class SessionService {
     return this.user.name;
   }
 
-  setName(name: String) {
+  setName(name: string) {
     this.user.name = name;
   }
 
@@ -35,13 +35,13 @@ export class SessionService {
     return this.user.sessionID;
   }
 
-  setSessionID(sessionID: String) {
+  setSessionID(sessionID: string) {
     this.user.sessionID = sessionID;
   }
 }
 
 interface IUser {
-  username: String,
-  name: String,
-  sessionID: String;
+  username: string,
+  name: string,
+  sessionID: string;
 }
