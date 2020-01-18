@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,9 +10,9 @@ import {Router} from '@angular/router';
 export class LoginPage implements OnInit {
   credentials: ICredentials;
 
-  constructor(private router:Router) {
+  constructor(private router:Router, private auth: AuthService) {
     this.credentials = {
-      username: '',
+      email: '',
       password: ''
     };
   }
@@ -23,29 +24,17 @@ export class LoginPage implements OnInit {
     this.router.navigateByUrl("/app/tabs/tab1")
   }
 
-  loginSubmitted() {
+  async loginSubmitted() {
     console.log('Form submitted!');
-    /**
-     * HTTP request to DB with SALTED AND HASHED CREDENTIALS by credentials service (npm install --save simple-crypto-js)
-     * Recieve session ID
-     */
-    console.log('Username: ', this.credentials.username);
+    console.log('Email: ', this.credentials.email);
     console.log('Password: ', this.credentials.password);
-  }
-
-  loginWithSessionID() {
-    /**
-     * Check session ID against stored value.
-     * 
-     * Possibly store list of open sessions per user,
-     * allows user to revoke access to specific devices.
-     * 
-     * Need to also send a Device ID when loging in with credentials.
-     */
+    if (await this.auth.checkLoggedIn()) {
+      console.log('Logged in');
+    }
   }
 }
 
 interface ICredentials {
-  username: String,
-  password: String;
+  email: string;
+  password: string;
 }
