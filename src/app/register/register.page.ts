@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
+  account: object;
 
-  constructor() { }
+  constructor() {
+    this.account = {
+      email: '',
+      password: ''
+    };
+  }
 
   ngOnInit() {
   }
