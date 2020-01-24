@@ -24,3 +24,11 @@ ion-card {
 ion-item {
     margin-bottom: 1em;
 }
+
+.passwordError {
+    border: 2px solid var(--ion-color-danger);
+}
+
+.passwordWarning {
+    display: flex !important;
+}
