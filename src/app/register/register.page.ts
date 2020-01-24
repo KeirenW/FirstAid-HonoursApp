@@ -7,16 +7,39 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['./register.page.scss'],
 })
 export class RegisterPage implements OnInit {
-  account: object;
+  account: IAccount;
+  passwordsMatch: boolean;
 
-  constructor() {
+  constructor(private auth: AuthService) {
     this.account = {
+      fName: '',
+      surname: '',
       email: '',
-      password: ''
+      password: '',
+      confirm: ''
     };
+    this.passwordsMatch = true;
+
   }
 
   ngOnInit() {
   }
 
+  registerAccount() {
+    // Check passwords match
+    if (this.account.password !== this.account.confirm) {
+      this.passwordsMatch = false;
+    } else {
+      this.auth.registerUser(this.account);
+    }
+  }
+
+}
+
+interface IAccount {
+  fName: string;
+  surname: string;
+  email: string;
+  password: string;
+  confirm: string;
 }
