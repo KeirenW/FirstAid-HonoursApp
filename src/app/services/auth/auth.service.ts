@@ -32,7 +32,7 @@ export class AuthService {
     });
   }
 
-  checkLoggedIn() {
-    return this.afAuth.authState.pipe(first()).toPromise();
+  getCurrentUser() {
+    return firebase.auth().currentUser;
   }
 }

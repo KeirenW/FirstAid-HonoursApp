@@ -20,16 +20,22 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  async NavigateToHome() {
-    this.router.navigateByUrl("/app/tabs/tab1")
-  }
-
-  async loginSubmitted() {
+  loginSubmitted() {
     console.log('Form submitted!');
     console.log('Email: ', this.credentials.email);
     console.log('Password: ', this.credentials.password);
-    if (await this.auth.checkLoggedIn()) {
-      console.log('Logged in');
+    try {
+      this.auth.loginUser(this.credentials).then(value => {
+        if (value) {
+          // Logged in
+          this.router.navigateByUrl('/app/tabs/tabs1');
+        } else {
+          // Error logging in
+          // TODO add helpful error messages for reason why login failed
+        }
+      });
+    } catch (error) {
+      console.log('Error');
     }
   }
 }

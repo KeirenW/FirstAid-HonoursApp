@@ -30,6 +30,7 @@ export class RegisterPage implements OnInit {
     if (this.account.password !== this.account.confirm) {
       this.passwordsMatch = false;
     } else {
+      // Register user
       this.auth.registerUser(this.account);
     }
   }
