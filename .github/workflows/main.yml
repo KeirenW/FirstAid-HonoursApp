@@ -16,9 +16,9 @@ jobs:
       - name: Setup Ionic  
         uses: coturiv/setup-ionic@v1.0.0
         
-      - name: Ionic production IOS build
+      - name: Ionic production Android build
         run: |
           npm install @angular/cli
-          ionic cordova build ios
+          ionic cordova build android
           
 
