@@ -3,11 +3,16 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
-    runs-on: ubuntu-latest
-
+  Build:
+    name: Build project using Ionic and Cordova
+    runs-on: [macos-latest]
     steps:
-    - uses: actions/checkout@v1
-    - name: Typescript compiler
-      uses: iCrawl/action-tsc@v1
+      - name: Checkout latest push
+      - uses: actions/checkout@v1
+        
+      - name: Setup Ionic  
+      - uses: coturiv/setup-ionic@v1.0.0
+      
+      - name: Ionic production Android build
+        run: |
+          ionic cordova build android --prod
