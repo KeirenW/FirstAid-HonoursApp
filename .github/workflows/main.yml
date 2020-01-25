@@ -19,6 +19,7 @@ jobs:
       - name: Ionic production Android build
         run: |
           npm install @angular/cli
+          ionic cordova resources
           ionic cordova build android --prod
           
 
