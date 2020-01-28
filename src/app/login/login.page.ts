@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class LoginPage implements OnInit {
   credentials: ICredentials;
 
-  constructor(private router:Router, private auth: AuthService) {
+  constructor(private router: Router, private auth: AuthService) {
     this.credentials = {
       email: '',
       password: ''
@@ -21,22 +21,15 @@ export class LoginPage implements OnInit {
   }
 
   loginSubmitted() {
-    console.log('Form submitted!');
-    console.log('Email: ', this.credentials.email);
-    console.log('Password: ', this.credentials.password);
-    try {
-      this.auth.loginUser(this.credentials).then(value => {
+    this.auth.loginUser(this.credentials).then(value => {
         if (value) {
           // Logged in
-          this.router.navigateByUrl('/app/tabs/tabs1');
+          this.router.navigateByUrl('/app/tabs/tab1');
         } else {
           // Error logging in
           // TODO add helpful error messages for reason why login failed
         }
       });
-    } catch (error) {
-      console.log('Error');
-    }
   }
 }
 
