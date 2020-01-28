@@ -24,7 +24,7 @@ export class LoginPage implements OnInit {
     this.auth.loginUser(this.credentials).then(value => {
         if (value) {
           // Logged in
-          this.router.navigateByUrl('/app/tabs/tab1');
+          this.router.navigateByUrl('/app/tabs/profile');
         } else {
           // Error logging in
           // TODO add helpful error messages for reason why login failed
