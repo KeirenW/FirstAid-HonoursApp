@@ -19,6 +19,10 @@ export class FirebaseService {
   getUserDetails(value) {
     return this.db.collection('users').doc<IUser>(value).snapshotChanges();
   }
+
+  updateUserDetails(value, details) {
+    return this.db.collection('users').doc<IUser>(value).update(details);
+  }
 }
 
 interface IUser {

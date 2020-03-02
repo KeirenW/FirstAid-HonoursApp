@@ -29,7 +29,7 @@
                       <ion-label position="floating">
                         First name
                       </ion-label>
-                      <ion-input [(ngModel)]="name" type="text" name="fName" value="{{user.firstName}}"></ion-input>
+                      <ion-input [(ngModel)]="user.name" type="text" name="fName" value="{{user.firstName}}"></ion-input>
                     </ion-item>
                   </ion-col>
                 </ion-row>
@@ -39,7 +39,7 @@
                       <ion-label position="floating">
                         Surname
                       </ion-label>
-                      <ion-input [(ngModel)]="surname" type="text" name="surname" value="{{user.surname}}"></ion-input>
+                      <ion-input [(ngModel)]="user.surname" type="text" name="surname" value="{{user.surname}}"></ion-input>
                     </ion-item>
                   </ion-col>
                 </ion-row>
@@ -49,7 +49,7 @@
                       <ion-label position="floating">
                         Email
                       </ion-label>
-                      <ion-input [(ngModel)]="email" type="email" name="email" value="{{user.email}}"></ion-input>
+                      <ion-input [(ngModel)]="user.email" type="email" name="email" value="{{user.email}}"></ion-input>
                     </ion-item>
                   </ion-col>
                 </ion-row>
