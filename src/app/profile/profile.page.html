@@ -1,7 +1,7 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="dark">
     <ion-title>
-      Tab Three
+      Firstaid
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,13 +9,60 @@
 <ion-content>
   <ion-grid fullscreen>
     <ion-row>
-      <ion-col offset="1" size="10" offsetLg="3" sizeLg="6">
+      <ion-col offset="1" size="10" offsetLg="2" sizeLg="4" class="ion-align-self-center">
         <ion-card>
-          <ion-item>
-            <ion-avatar slot="start">
-              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAAAAACH5BAAAAAAALAAAAAABAAEAAAICTAEAOw==">
-            </ion-avatar>
-          </ion-item>
+          <ion-card-header>
+            <ion-card-title color="dark">My Details</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form (ngSubmit)="updateDetails()">
+                <ion-row>
+                  <ion-col>
+                    <ion-avatar class="avatar">
+                      <img src="../../assets/avatar.png">
+                    </ion-avatar>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">
+                        First name
+                      </ion-label>
+                      <ion-input [(ngModel)]="name" type="text" name="fName" value="{{user.firstName}}"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">
+                        Surname
+                      </ion-label>
+                      <ion-input [(ngModel)]="surname" type="text" name="surname" value="{{user.surname}}"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label position="floating">
+                        Email
+                      </ion-label>
+                      <ion-input [(ngModel)]="email" type="email" name="email" value="{{user.email}}"></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-button type="submit" expand="block">Update Details</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col offset="1" size="10" offsetLg="0" sizeLg="4">
+        <ion-card>
+          <ion-avatar slot="start" class="avatar">
+            <img src="../../assets/avatar.png">
+          </ion-avatar>
         </ion-card>
       </ion-col>
     </ion-row>

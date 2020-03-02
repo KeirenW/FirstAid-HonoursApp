@@ -15,4 +15,14 @@ export class FirebaseService {
       email: value.email
     });
   }
+
+  getUserDetails(value) {
+    return this.db.collection('users').doc<IUser>(value).snapshotChanges();
+  }
+}
+
+interface IUser {
+  firstName: string;
+  surname: string;
+  email: string;
 }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
+import { FirebaseService } from '../services/firebase/firebase.service';
 
 @Component({
   selector: 'app-profile',
@@ -6,7 +8,22 @@ import { Component } from '@angular/core';
   styleUrls: ['profile.page.scss']
 })
 export class ProfilePage {
+  public user: IUser = {
+    firstName: '',
+    surname: '',
+    email: ''
+  };
+  public test: any;
 
-  constructor() {}
+  constructor(public auth: AuthService, public firebase: FirebaseService) {}
 
+  ngOnInit() {
+    this.firebase.getUserDetails(this.auth.getCurrentUser().uid).subscribe(res => this.user = res.payload.data());
+  }
+}
+
+interface IUser {
+  firstName: string;
+  surname: string;
+  email: string;
 }
