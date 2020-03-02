@@ -25,6 +25,9 @@
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
 
-ion-content {
-    --background: var(--ion-color-dark-tint)
+ion-title {
+    line-height: 50px;
+    background: url(assets/logo.svg) no-repeat left center;
+    background-size: 60px;
+    padding-left: 50px;
 }
