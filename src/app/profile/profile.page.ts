@@ -14,11 +14,6 @@ export class ProfilePage {
     surname: '',
     email: ''
   };
-  public newDetails: IUser = {
-    firstName: '',
-    surname: '',
-    email: ''
-  };
 
   constructor(public auth: AuthService, public firebase: FirebaseService) {}
 
