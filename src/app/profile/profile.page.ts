@@ -18,7 +18,7 @@ export class ProfilePage {
   constructor(public auth: AuthService, public firebase: FirebaseService) {}
 
   ngOnInit() {
-    this.firebase.getUserDetails(this.auth.getCurrentUser().uid).subscribe(res => this.user = res.payload.data());
+    this.firebase.getUserDetails(localStorage.getItem('UID')).subscribe(res => this.user = res.payload.data());
   }
 }
 

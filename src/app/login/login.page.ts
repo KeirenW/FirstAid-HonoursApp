@@ -25,10 +25,10 @@ export class LoginPage implements OnInit {
         if (value) {
           // Logged in
           this.router.navigateByUrl('/app/tabs/profile');
-        } else {
-          // Error logging in
-          // TODO add helpful error messages for reason why login failed
         }
+      })
+      .catch(error => {
+        console.log(error.message);
       });
   }
 }
