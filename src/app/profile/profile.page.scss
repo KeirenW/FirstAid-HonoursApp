@@ -1,1 +1,24 @@
+ion-title {
+    line-height: 50px;
+    background: url(../../assets/logo.svg) no-repeat left center;
+    background-size: 60px;
+    padding-left: 50px;
+}
 
+ion-card {
+    box-shadow: darken($color: #000000, $amount: 100);
+}
+
+ion-card-header {
+    --background: var(--ion-color-light);
+    border-bottom: thin solid grey;
+}
+
+ion-button:last-child{
+    margin-top: 2em;
+}
+
+.avatar {
+    margin: 0 auto;
+    margin-top: 1em;
+}
