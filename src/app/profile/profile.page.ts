@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { FirebaseService } from '../services/firebase/firebase.service';
-import {} from '@ionic-native/google-maps';
 
 @Component({
   selector: 'app-profile',
