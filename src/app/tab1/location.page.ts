@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, MarkerOptions, LatLng } from '@ionic-native/google-maps';
+import { LocationService } from '../services/location/location.service';
 
 @Component({
   selector: 'app-location',
@@ -9,8 +10,10 @@ import { GoogleMaps, GoogleMap, GoogleMapsEvent } from '@ionic-native/google-map
 })
 export class LocationPage {
   map: GoogleMap;
-  LatLong = {};
-  constructor(private platform: Platform) {
+  markerOptions: MarkerOptions;
+  currentLocation: LatLng;
+
+  constructor(private platform: Platform, public location: LocationService) {
     this.platform.ready().then(() => {
       this.loadMap();
     });
