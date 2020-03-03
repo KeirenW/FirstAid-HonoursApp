@@ -12,6 +12,7 @@ import { AppComponent } from './app.component';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
+import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 import { environment } from 'src/environments/environment';
 
 @NgModule({
@@ -29,6 +30,7 @@ import { environment } from 'src/environments/environment';
     StatusBar,
     SplashScreen,
     AngularFireAuth,
+    GoogleMaps,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
