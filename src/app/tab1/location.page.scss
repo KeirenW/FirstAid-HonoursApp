@@ -1,4 +1,11 @@
-.welcome-card img {
-  max-height: 35vh;
+ion-title {
+  line-height: 50px;
+  background: url(../../assets/logo.svg) no-repeat left center;
+  background-size: 60px;
+  padding-left: 50px;
+}
+
+ion-card {
+  height: 60vh;
   overflow: hidden;
 }
