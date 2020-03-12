@@ -12,7 +12,11 @@ export class FirebaseService {
     return this.db.collection('users').doc(value.UUID).set({
       firstName: value.fName,
       surname: value.surname,
-      email: value.email
+      email: value.email,
+      uuid: value.UUID,
+      lastLat: '56.458405',
+      lastLng: '-2.982447'
+      // TODO: Lat/Long need to be dynamic
     });
   }
 
