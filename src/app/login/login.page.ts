@@ -24,6 +24,7 @@ export class LoginPage implements OnInit {
     this.auth.loginUser(this.credentials).then(value => {
         if (value) {
           // Logged in
+          this.auth.setCurrentUser();
           this.router.navigateByUrl('/app/tabs/profile');
         }
       })

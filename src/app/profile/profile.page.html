@@ -18,13 +18,6 @@
             <form (ngSubmit)="updateDetails()">
                 <ion-row>
                   <ion-col>
-                    <ion-avatar class="avatar">
-                      <img src="../../assets/avatar.png">
-                    </ion-avatar>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
                     <ion-item>
                       <ion-label position="floating">
                         First name
@@ -53,7 +46,15 @@
                     </ion-item>
                   </ion-col>
                 </ion-row>
-                <ion-button type="submit" expand="block">Update Details</ion-button>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>On duty</ion-label>
+                      <ion-toggle [(ngModel)]="user.active" name="active" color="secondary"></ion-toggle>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-button type="submit" expand="block">Confirm</ion-button>
             </form>
           </ion-card-content>
         </ion-card>
@@ -64,9 +65,7 @@
             <ion-card-title color="dark">Alert History</ion-card-title>
           </ion-card-header>
           <ion-card-content>
-            <ion-avatar slot="start" class="avatar">
-              <img src="../../assets/avatar.png">
-            </ion-avatar>
+
           </ion-card-content>
         </ion-card>
       </ion-col>

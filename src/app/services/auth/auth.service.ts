@@ -25,17 +25,20 @@ export class AuthService {
 
   loginUser(value) {
     return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(session => {
-      return new Promise<any>((resolve, reject) => {
-        firebase.auth().signInWithEmailAndPassword(value.email, value.password).then(
-          res => {
-            resolve(res);
-            this.loggedIn = true;
-            localStorage.setItem('UID', firebase.auth().currentUser.uid);
-          },
-          err => reject(err)
-        );
-      });
+      return firebase.auth().signInWithEmailAndPassword(value.email, value.password);
     });
+    // return firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(session => {
+    //   return new Promise<any>((resolve, reject) => {
+    //     firebase.auth().signInWithEmailAndPassword(value.email, value.password).then(
+    //       res => {
+    //         resolve(res);
+    //         this.loggedIn = true;
+    //         localStorage.setItem('UID', firebase.auth().currentUser.uid);
+    //       },
+    //       err => reject(err)
+    //     );
+    //   });
+    // });
   }
 
   getCurrentUser() {
@@ -44,5 +47,9 @@ export class AuthService {
         localStorage.removeItem('UID');
       }
     });
+  }
+
+  setCurrentUser() {
+    localStorage.setItem('UID', firebase.auth().currentUser.uid);
   }
 }
