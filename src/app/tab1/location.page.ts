@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, MarkerOptions, LatLng } from '@ionic-native/google-maps';
+import { GoogleMaps, GoogleMap, GoogleMapsEvent, GoogleMapsAnimation, Marker } from '@ionic-native/google-maps';
 import { LocationService } from '../services/location/location.service';
 
 @Component({
@@ -10,8 +10,12 @@ import { LocationService } from '../services/location/location.service';
 })
 export class LocationPage {
   map: GoogleMap;
-  markerOptions: MarkerOptions;
-  currentLocation: LatLng;
+  currentLocation: ICurrentLocation = {
+    lng: 0,
+    lat: 0,
+    timestamp: 0
+  };
+  marker: Marker;
 
   constructor(private platform: Platform, public location: LocationService) {
     this.platform.ready().then(() => {
@@ -21,17 +25,31 @@ export class LocationPage {
 
   loadMap() {
     this.map = GoogleMaps.create('map_canvas');
-    // TODO current location, that inbuilt feature with watch
-    // navigator.geolocation.getCurrentPosition(location => this.LatLong = location);
-    // navigator.geolocation.watchPosition(liveLocation => this.LatLong = liveLocation)
-    //  watchPosition can have PositionOptions param w/ timeout (units unsure)
 
-    // Django, bootstrap, users page => CRUD, Update lowest priority atm 'started' 2/3/2020
+    navigator.geolocation.watchPosition(curPos => {
+      this.currentLocation.lat = curPos.coords.latitude;
+      this.currentLocation.lng = curPos.coords.longitude;
+      this.currentLocation.timestamp = curPos.timestamp;
+      console.log(this.currentLocation);
+      this.map.addMarker({
+        animation: GoogleMapsAnimation.DROP,
+        position: this.currentLocation
+      });
+    }, error => console.log(error.code, ': ', error.message));
+    // This is broken.... Make a new marker every time location changes and wrong location???
 
     this.map.one(GoogleMapsEvent.MAP_READY).then(this.onMapReady.bind(this));
+    
   }
 
   onMapReady() {
     console.log('map is ready!');
+    this.location.startTracking();
   }
+}
+
+interface ICurrentLocation {
+  lat: number;
+  lng: number;
+  timestamp: number;
 }
