@@ -12,8 +12,7 @@ export class LocationPage {
   map: GoogleMap;
   currentLocation: ICurrentLocation = {
     lng: 0,
-    lat: 0,
-    timestamp: 0
+    lat: 0
   };
   marker: Marker;
 
@@ -27,10 +26,7 @@ export class LocationPage {
     this.map = GoogleMaps.create('map_canvas');
 
     navigator.geolocation.watchPosition(curPos => {
-      this.currentLocation.lat = curPos.coords.latitude;
-      this.currentLocation.lng = curPos.coords.longitude;
-      this.currentLocation.timestamp = curPos.timestamp;
-      console.log(this.currentLocation);
+      this.currentLocation = this.location.currentLocation;
       this.map.addMarker({
         animation: GoogleMapsAnimation.DROP,
         position: this.currentLocation
@@ -51,5 +47,4 @@ export class LocationPage {
 interface ICurrentLocation {
   lat: number;
   lng: number;
-  timestamp: number;
 }
