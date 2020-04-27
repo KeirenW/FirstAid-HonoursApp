@@ -9,10 +9,15 @@ export class FirebaseService {
   constructor(private db: AngularFirestore) { }
 
   initialUserSetup(value) {
+    localStorage.setItem('UID', value.uuid);
     return this.db.collection('users').doc(value.UUID).set({
+      active: false,
+      email: value.email,
       firstName: value.fName,
       surname: value.surname,
-      email: value.email
+      lastLat: '',
+      lastLng: '',
+      uuid: value.uuid
     });
   }
 
