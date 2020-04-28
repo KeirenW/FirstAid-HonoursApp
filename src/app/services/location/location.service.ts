@@ -1,29 +1,49 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
-import { LatLng } from '@ionic-native/google-maps';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {
-  currentLocation = {
-    lat: null,
-    lng: null
-  };
+  currentLocation: BehaviorSubject<any>;
 
   constructor(private geoLocation: Geolocation) {
-  }
-
-  startTracking() {
-    let watch = this.geoLocation.watchPosition();
-    watch.subscribe((data) => {
-      this.currentLocation.lat = data.coords.latitude;
-      this.currentLocation.lng = data.coords.longitude;
-      console.log(this.currentLocation);
+    this.currentLocation = new BehaviorSubject({lat: null, lng: null});
+    this.geoLocation.getCurrentPosition().then(pos => {
+      this.currentLocation.next({
+        lat: pos.coords.latitude,
+        lng: pos.coords.longitude
+      });
+      console.log('Forced location check :', this.currentLocation.value);
+    }).catch(err => {
+      console.log('Error getting location: ', err);
     });
   }
 
-  getCurrentLocation() {
-    return this.currentLocation;
+  startTracking() {
+    const watch = this.geoLocation.watchPosition();
+    console.log('Started location tracking');
+    // Everytime location is updated this fires.
+    watch.subscribe(data => {
+      console.log('TEST');
+      if (data.coords.latitude != null || data.coords.longitude != null) {
+        this.currentLocation.next(
+          {
+            lat: data.coords.latitude,
+            lng: data.coords.longitude
+          }
+        );
+      }
+      console.log('Location :: SERVICE :: ', this.currentLocation.value);
+    });
+  }
+
+  getCurrentLocation(): Observable<any> {
+    return this.currentLocation.asObservable();
+  }
+
+  forceLocationUpdate() {
+    this.geoLocation.getCurrentPosition();
   }
 }
