@@ -15,6 +15,7 @@ import { AngularFireModule } from '@angular/fire';
 import { GoogleMaps } from '@ionic-native/google-maps/ngx';
 import { environment } from 'src/environments/environment';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { FCM } from '@ionic-native/fcm/ngx';
 
 @NgModule({
   declarations: [AppComponent],
@@ -33,6 +34,7 @@ import { Geolocation } from '@ionic-native/geolocation/ngx';
     AngularFireAuth,
     GoogleMaps,
     Geolocation,
+    FCM,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { NotificationService } from '../services/notification/notification.service';
 
 @Component({
   selector: 'app-login',
@@ -10,7 +11,7 @@ import { AuthService } from '../services/auth/auth.service';
 export class LoginPage implements OnInit {
   credentials: ICredentials;
 
-  constructor(private router: Router, private auth: AuthService) {
+  constructor(private router: Router, private auth: AuthService, private notif: NotificationService) {
     this.credentials = {
       email: '',
       password: ''
@@ -19,6 +20,7 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
     if (this.auth.isLoggedIn()) {
+      this.notif.subscribeToTopic(this.auth.getCurrentUser());
       this.router.navigateByUrl('/app/tabs/profile');
     }
   }
