@@ -14,7 +14,7 @@
 <ion-content>
   <ion-grid fullscreen>
     <ion-row>
-      <ion-col offset="0" size="12" offsetLg="2" sizeLg="4" class="ion-align-self-center">
+      <ion-col size="12"class="ion-align-self-center">
         <ion-card>
           <ion-card-header>
             <ion-card-title color="dark">My Details</ion-card-title>
@@ -27,7 +27,7 @@
                       <ion-label position="floating">
                         First name
                       </ion-label>
-                      <ion-input [(ngModel)]="user.name" type="text" name="fName" value="{{user.firstName}}"></ion-input>
+                      <ion-input [(ngModel)]="user.firstName" type="text" name="fName" value="{{user.firstName}}"></ion-input>
                     </ion-item>
                   </ion-col>
                 </ion-row>
@@ -61,16 +61,6 @@
                 </ion-row>
                 <ion-button type="submit" expand="block">Confirm</ion-button>
             </form>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col offset="0" size="12" offsetLg="0" sizeLg="4">
-        <ion-card>
-        <ion-card-header>
-            <ion-card-title color="dark">Alert History</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-
           </ion-card-content>
         </ion-card>
       </ion-col>
