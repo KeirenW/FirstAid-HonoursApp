@@ -52,7 +52,13 @@ export class LocationPage implements OnInit {
         lat: 0,
         lng: 0
       },
-      icon: 'blue',
+      icon: {
+        url: 'assets/location-marker.svg',
+        size: {
+          width: 20,
+          height: 20
+        }
+      }
     });
     this.map.one(GoogleMapsEvent.MAP_READY).then(this.onMapReady.bind(this));
   }
