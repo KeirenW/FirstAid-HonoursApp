@@ -40,7 +40,8 @@ export class LocationPage {
 
   onMapReady() {
     console.log('map is ready!');
-    this.location.startTracking();
+  signOut() {
+    this.auth.signOut();
   }
 }
 

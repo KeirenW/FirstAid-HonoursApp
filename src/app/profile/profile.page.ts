@@ -18,7 +18,7 @@ export class ProfilePage implements OnInit {
   constructor(public auth: AuthService, public firebase: FirebaseService) {}
 
   ngOnInit() {
-    this.firebase.getUserDetails(localStorage.getItem('UID')).subscribe(res => this.user = res.payload.data());
+    this.firebase.getUserDetails(this.auth.getCurrentUser()).subscribe(res => this.user = res.payload.data());
   }
 
   updateDetails() {
@@ -27,7 +27,11 @@ export class ProfilePage implements OnInit {
      * Fix this by updating email associated with the account in firebase
      */
     console.log(this.user);
-    this.firebase.updateUserDetails(localStorage.getItem('UID'), this.user).then(message => alert('Details Updated'));
+    this.firebase.updateUserDetails(this.auth.getCurrentUser(), this.user).then(() => alert('Details Updated'));
+  }
+
+  signOut() {
+    this.auth.signOut();
   }
 }
 
