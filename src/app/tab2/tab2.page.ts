@@ -11,6 +11,6 @@ export class Tab2Page {
   constructor(private auth: AuthService) { }
 
   signOut() {
-    this.auth.signOut();
+    this.auth.cleanThenSignOut();
   }
 }

@@ -94,7 +94,7 @@ export class LocationPage implements OnInit {
   }
 
   signOut() {
-    this.auth.signOut();
+    this.auth.cleanThenSignOut();
   }
 }
 

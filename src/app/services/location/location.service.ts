@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { FirebaseService } from '../firebase/firebase.service';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -8,7 +10,7 @@ import { Observable, BehaviorSubject } from 'rxjs';
 export class LocationService {
   currentLocation: BehaviorSubject<any>;
 
-  constructor(private geoLocation: Geolocation) {
+  constructor(private geoLocation: Geolocation, private firebase: FirebaseService, private auth: AuthService) {
     this.currentLocation = new BehaviorSubject({lat: null, lng: null});
     this.geoLocation.getCurrentPosition().then(pos => {
       this.currentLocation.next({
@@ -32,6 +34,12 @@ export class LocationService {
           {
             lat: data.coords.latitude,
             lng: data.coords.longitude
+          }
+        );
+        this.firebase.updateUserLocation(this.auth.getCurrentUser(),
+          {
+            lat: this.currentLocation.value.lat,
+            lng: this.currentLocation.value.lng
           }
         );
       }

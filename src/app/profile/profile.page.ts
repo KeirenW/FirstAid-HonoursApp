@@ -31,7 +31,7 @@ export class ProfilePage implements OnInit {
   }
 
   signOut() {
-    this.auth.signOut();
+    this.auth.cleanThenSignOut();
   }
 }
 

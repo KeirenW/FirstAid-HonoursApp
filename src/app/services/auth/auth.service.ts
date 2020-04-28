@@ -3,6 +3,7 @@ import * as firebase from 'firebase/app';
 import { FirebaseService } from '../firebase/firebase.service';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   private currentUUID: string;
 
-  constructor(private firebaseService: FirebaseService, public afAuth: AngularFireAuth, private router: Router) {
+  constructor(private db: AngularFirestore, public afAuth: AngularFireAuth, private router: Router) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.currentUUID = user.uid;
@@ -55,11 +56,17 @@ export class AuthService {
     return this.currentUUID;
   }
 
-  signOut() {
-    this.firebaseService.updateUserActiveStatus(this.currentUUID, false);
-    this.afAuth.auth.signOut().then(() => {
+  cleanThenSignOut() {
+    this.db.collection('users').doc(this.currentUUID).update(
+      {
+        active: false,
+        lastLat: '',
+        lastLng: ''
+      }
+    ).then(() => {
       this.currentUUID = null;
+      this.afAuth.auth.signOut();
       this.router.navigateByUrl('');
-    });
+    }).catch(err => {});
   }
 }
