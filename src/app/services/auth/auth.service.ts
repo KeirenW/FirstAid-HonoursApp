@@ -38,7 +38,9 @@ export class AuthService {
 
   loginUser(value) {
     return this.afAuth.auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL).then(() => {
-      this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password);
+      this.afAuth.auth.signInWithEmailAndPassword(value.email, value.password).then(() => {
+        // Subscribe to their notif channel
+      });
     });
   }
 
