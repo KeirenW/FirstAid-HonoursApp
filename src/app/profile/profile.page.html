@@ -1,5 +1,10 @@
 <ion-header>
   <ion-toolbar color="dark">
+    <ion-buttons slot="secondary">
+      <ion-button fill="solid" color="danger" (click)="signOut()">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>
       Firstaid
     </ion-title>
@@ -9,7 +14,7 @@
 <ion-content>
   <ion-grid fullscreen>
     <ion-row>
-      <ion-col offset="0" size="12" offsetLg="2" sizeLg="4" class="ion-align-self-center">
+      <ion-col size="12"class="ion-align-self-center">
         <ion-card>
           <ion-card-header>
             <ion-card-title color="dark">My Details</ion-card-title>
@@ -18,18 +23,11 @@
             <form (ngSubmit)="updateDetails()">
                 <ion-row>
                   <ion-col>
-                    <ion-avatar class="avatar">
-                      <img src="../../assets/avatar.png">
-                    </ion-avatar>
-                  </ion-col>
-                </ion-row>
-                <ion-row>
-                  <ion-col>
                     <ion-item>
                       <ion-label position="floating">
                         First name
                       </ion-label>
-                      <ion-input [(ngModel)]="user.name" type="text" name="fName" value="{{user.firstName}}"></ion-input>
+                      <ion-input [(ngModel)]="user.firstName" type="text" name="fName" value="{{user.firstName}}"></ion-input>
                     </ion-item>
                   </ion-col>
                 </ion-row>
@@ -53,20 +51,16 @@
                     </ion-item>
                   </ion-col>
                 </ion-row>
-                <ion-button type="submit" expand="block">Update Details</ion-button>
+                <ion-row>
+                  <ion-col>
+                    <ion-item>
+                      <ion-label>On duty</ion-label>
+                      <ion-toggle [(ngModel)]="user.active" name="active" color="secondary"></ion-toggle>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-button type="submit" expand="block">Confirm</ion-button>
             </form>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col offset="0" size="12" offsetLg="0" sizeLg="4">
-        <ion-card>
-        <ion-card-header>
-            <ion-card-title color="dark">Alert History</ion-card-title>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-avatar slot="start" class="avatar">
-              <img src="../../assets/avatar.png">
-            </ion-avatar>
           </ion-card-content>
         </ion-card>
       </ion-col>

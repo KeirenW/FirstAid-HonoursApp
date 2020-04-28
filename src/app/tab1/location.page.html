@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>
+      Tab One
+    </ion-title>
+    <ion-buttons slot="secondary">
+      <ion-button fill="solid" color="danger" (click)="signOut()">
+        <ion-icon slot="icon-only" name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fullscren>
+    <ion-row align-items-center>
+      <ion-col offset="0" size="12" offsetLg="1" sizeLg="10" align-self-center>
+        <div id="map_canvas"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

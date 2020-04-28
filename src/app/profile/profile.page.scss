@@ -5,6 +5,10 @@ ion-title {
     padding-left: 50px;
 }
 
+ion-row {
+    overflow-y: scroll;
+}
+
 ion-card {
     box-shadow: darken($color: #000000, $amount: 100);
 }

@@ -18,16 +18,13 @@ export class LoginPage implements OnInit {
   }
 
   ngOnInit() {
+    if (this.auth.isLoggedIn()) {
+      this.router.navigateByUrl('/app/tabs/profile');
+    }
   }
 
   loginSubmitted() {
-    this.auth.loginUser(this.credentials).then(value => {
-        if (value) {
-          // Logged in
-          this.router.navigateByUrl('/app/tabs/profile');
-        }
-      })
-      .catch(error => {
+    this.auth.loginUser(this.credentials).catch(error => {
         console.log(error.message);
       });
   }

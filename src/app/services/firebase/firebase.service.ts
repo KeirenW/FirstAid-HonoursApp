@@ -1,22 +1,23 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(private db: AngularFirestore) { }
+  constructor(private db: AngularFirestore, private auth: AuthService) { }
 
   initialUserSetup(value) {
     return this.db.collection('users').doc(value.UUID).set({
+      active: false,
+      email: value.email,
       firstName: value.fName,
       surname: value.surname,
-      email: value.email,
-      uuid: value.UUID,
-      lastLat: '56.458405',
-      lastLng: '-2.982447'
-      // TODO: Lat/Long need to be dynamic
+      lastLat: '',
+      lastLng: '',
+      uuid: value.uuid
     });
   }
 
@@ -26,6 +27,19 @@ export class FirebaseService {
 
   updateUserDetails(value, details) {
     return this.db.collection('users').doc<IUser>(value).update(details);
+  }
+
+  updateUserActiveStatus(uuid, isActive: boolean) {
+    this.db.collection('users').doc(uuid).update({active: isActive});
+  }
+
+  updateUserLocation(uuid, location) {
+    this.db.collection('users').doc(uuid).update(
+      {
+        lastLat: location.lat,
+        lastLng: location.lng
+      }
+      );
   }
 }
 

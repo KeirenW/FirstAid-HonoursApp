@@ -1,29 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 import { FirebaseService } from '../services/firebase/firebase.service';
-import {} from '@ionic-native/google-maps';
 
 @Component({
   selector: 'app-profile',
   templateUrl: 'profile.page.html',
   styleUrls: ['profile.page.scss']
 })
-export class ProfilePage {
+export class ProfilePage implements OnInit {
   public user: IUser = {
     firstName: '',
     surname: '',
-    email: ''
-  };
-  public newDetails: IUser = {
-    firstName: '',
-    surname: '',
-    email: ''
+    email: '',
+    active: ''
   };
 
   constructor(public auth: AuthService, public firebase: FirebaseService) {}
 
   ngOnInit() {
-    this.firebase.getUserDetails(localStorage.getItem('UID')).subscribe(res => this.user = res.payload.data());
+    this.firebase.getUserDetails(this.auth.getCurrentUser()).subscribe(res => this.user = res.payload.data());
   }
 
   updateDetails() {
@@ -31,7 +26,12 @@ export class ProfilePage {
      * Changing email listed in DB may cause issues with Authentication
      * Fix this by updating email associated with the account in firebase
      */
-    this.firebase.updateUserDetails(localStorage.getItem('UID'), this.user).then(message => alert('Details Updated'));
+    console.log(this.user);
+    this.firebase.updateUserDetails(this.auth.getCurrentUser(), this.user).then(() => alert('Details Updated'));
+  }
+
+  signOut() {
+    this.auth.cleanThenSignOut();
   }
 }
 
@@ -39,4 +39,5 @@ interface IUser {
   firstName: string;
   surname: string;
   email: string;
+  active?: string;
 }
