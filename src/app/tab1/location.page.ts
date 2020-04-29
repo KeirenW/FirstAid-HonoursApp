@@ -54,7 +54,7 @@ export class LocationPage implements OnInit {
         lng: 0
       },
       icon: {
-        url: 'assets/location-marker.svg',
+        url: './assets/location-marker.png',
         size: {
           width: 20,
           height: 20
@@ -77,7 +77,8 @@ export class LocationPage implements OnInit {
           target: {
             lat: res.lat,
             lng: res.lng
-          }
+          },
+          zoom: 16
         });
       } else {
         this.alertLocationServicesOff();
