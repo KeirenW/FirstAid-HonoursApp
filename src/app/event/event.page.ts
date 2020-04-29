@@ -2,11 +2,11 @@ import { Component } from '@angular/core';
 import { AuthService } from '../services/auth/auth.service';
 
 @Component({
-  selector: 'app-tab2',
-  templateUrl: 'tab2.page.html',
-  styleUrls: ['tab2.page.scss']
+  selector: 'app-event',
+  templateUrl: 'event.page.html',
+  styleUrls: ['event.page.scss']
 })
-export class Tab2Page {
+export class EventPage {
 
   constructor(private auth: AuthService) { }
 
