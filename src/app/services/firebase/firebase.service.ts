@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -49,10 +50,43 @@ export class FirebaseService {
   getAssignedEvent(value) {
     return this.db.collection('events').doc(value).valueChanges();
   }
+
+  setAssignedEventAnswer(answer, event) {
+    if (answer) {
+      // accepted
+    } else {
+      // Rejected, unassign and notificy admin
+      this.db.collection('assigned').doc(event).valueChanges().subscribe(res => {
+        let lastAssigned: any = res;
+        const timestamp = new Date().toUTCString();
+        lastAssigned.assignees[lastAssigned.assignees.length - 1] = {
+          response: false,
+          timeNotified: lastAssigned.assignees[lastAssigned.assignees.length - 1].timeNotified,
+          timeResponded: timestamp,
+          uuid: lastAssigned.assignees[lastAssigned.assignees.length - 1].uuid,
+        };
+        this.db.collection('assigned').doc(event).update(lastAssigned);
+      });
+
+      this.db.collection('users').doc(this.auth.getCurrentUser()).update({assignedEvent: ''});
+    }
+  }
 }
 
 interface IUser {
   firstName: string;
   surname: string;
   email: string;
+}
+
+interface Event {
+  assignees?: [
+    {
+      response?: boolean;
+      timeNotified?: any,
+      timeResponded?: any,
+      uuid?: string,
+    }
+  ];
+  UUID?: string;
 }
