@@ -11,4 +11,14 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content></ion-content>
+<ion-content center>
+  <ion-grid>
+    <ion-row class="ion-align-items-center" *ngIf="!event">
+      <ion-col size="12" class="ion-align-self-center">
+        <ion-text color="medium">
+          <h1>You are not currently assigned to an event!</h1>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

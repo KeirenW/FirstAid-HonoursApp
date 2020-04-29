@@ -7,8 +7,10 @@ import { AuthService } from '../services/auth/auth.service';
   styleUrls: ['event.page.scss']
 })
 export class EventPage {
-
-  constructor(private auth: AuthService) { }
+  public event;
+  constructor(private auth: AuthService) {
+    this.event = null;
+  }
 
   signOut() {
     this.auth.cleanThenSignOut();
