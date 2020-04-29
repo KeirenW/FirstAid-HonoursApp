@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar color="dark">
     <ion-title>
-      Tab One
+      My Location
     </ion-title>
     <ion-buttons slot="secondary">
       <ion-button fill="solid" color="danger" (click)="signOut()">
@@ -11,10 +11,10 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content center text-center>
   <ion-grid fullscren>
-    <ion-row align-items-center>
-      <ion-col offset="0" size="12" offsetLg="1" sizeLg="10" align-self-center>
+    <ion-row class="ion-align-items-center">
+      <ion-col offset="0" size="12" offsetLg="1" sizeLg="10" class="ion-align-self-center">
         <div id="map_canvas"></div>
       </ion-col>
     </ion-row>
