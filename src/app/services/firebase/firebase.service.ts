@@ -39,7 +39,11 @@ export class FirebaseService {
         lastLat: location.lat,
         lastLng: location.lng
       }
-      );
+    );
+  }
+
+  getAssignedEventStatus() {
+    return this.db.collection('users').doc(this.auth.getCurrentUser()).valueChanges();
   }
 }
 
