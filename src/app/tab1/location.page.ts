@@ -17,6 +17,7 @@ export class LocationPage implements OnInit {
   };
   locationMarker: Marker;
   mapOptions: GoogleMapOptions;
+  nullLocationChecks = 0;
 
   constructor(
     private platform: Platform,
@@ -85,12 +86,15 @@ export class LocationPage implements OnInit {
   }
 
   async alertLocationServicesOff() {
-    const alert = await this.alertController.create({
-      header: 'Unable to get location!',
-      message: 'Ensure that location services are enabled in your devices settings.',
-      buttons: ['OK']
-    });
-    await alert.present();
+    this.nullLocationChecks++;
+    if (this.nullLocationChecks > 2) {
+      const alert = await this.alertController.create({
+        header: 'Unable to get location!',
+        message: 'Ensure that location services are enabled in your devices settings.',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }
   }
 
   signOut() {
