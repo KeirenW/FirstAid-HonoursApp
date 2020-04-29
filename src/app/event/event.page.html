@@ -13,7 +13,7 @@
 
 <ion-content center>
   <ion-grid>
-    <ion-row class="ion-align-items-center" *ngIf="event.assignedEvent == ''; else pending">
+    <ion-row class="ion-align-items-center" *ngIf="user.assignedEvent == ''; else pending">
       <ion-col size="12" class="ion-align-self-center">
         <ion-text color="medium">
           <h1>You are not currently assigned to an event!</h1>
@@ -24,11 +24,62 @@
     <ng-template #pending>
       <ion-row class="ion-align-items-center" *ngIf="acceptedResponse == null; else current">
         <ion-col size="12" class="ion-align-self-center">
-          <ion-text color="medium">
-            <h1>You are assigned to an event! DECIDE</h1>
-          </ion-text>
+          <ion-card *ngIf="event; else loading">
+            <ion-card-header color="light">
+              <ion-card-title color="dark">
+                Response Request
+                <ion-badge *ngIf="event.Severity == 'Mild'" color="secondary">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Moderate'" color="tertiary">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Severe'" color="warning">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Urgent'" color="danger">{{event.Severity}}</ion-badge>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <!-- Event details -->
+              <ion-item>
+                <ion-label position="stacked">
+                  <p>Location</p>
+                </ion-label>
+                <ion-text>
+                  <p color="dark">
+                    {{event.Location}}
+                  </p>
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">
+                  <p>Description</p>
+                </ion-label>
+                <ion-text>
+                  <p color="dark">
+                    {{event.Description.substring(0, 120)}}
+                  </p>
+                </ion-text>
+              </ion-item>
+              <ion-item slot="start">
+                <ion-label position="stacked">
+                  <p>Victim</p>
+                </ion-label>
+                <ion-text>
+                  <p>Age: {{event.Victim.Age}}</p>
+                </ion-text>
+                <ion-text>
+                  <p>Gender: {{event.Victim.Sex}}</p>
+                </ion-text>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
+          <div class="buttons">
+            <ion-button item-start size="medium" color="danger" (click)="respondToRequest(false)">Reject</ion-button>
+            <ion-button item-end size="medium" color="success" (click)="respondToRequest(true)">Accept</ion-button>
+          </div>
         </ion-col>
       </ion-row>
+
+    </ng-template>
+
+    <ng-template #loading>
+      <ion-spinner name="dots"></ion-spinner>
     </ng-template>
 
     <ng-template #current>

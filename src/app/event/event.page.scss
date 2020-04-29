@@ -19,3 +19,12 @@ ion-row {
 ion-text {
     text-align: center;
 }
+
+ion-badge {
+    float: right;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}

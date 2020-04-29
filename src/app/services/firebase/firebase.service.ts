@@ -42,8 +42,12 @@ export class FirebaseService {
     );
   }
 
-  getAssignedEventStatus() {
-    return this.db.collection('users').doc(this.auth.getCurrentUser()).valueChanges();
+  getAssignedEventStatus(value) {
+    return this.db.collection('users').doc(value).valueChanges();
+  }
+
+  getAssignedEvent(value) {
+    return this.db.collection('events').doc(value).valueChanges();
   }
 }
 
