@@ -13,7 +13,7 @@
 
 <ion-content center>
   <ion-grid>
-    <ion-row class="ion-align-items-center" *ngIf="user.assignedEvent == ''; else pending">
+    <ion-row class="ion-align-items-center" *ngIf="user.assignedEvent.uuid == null; else pending">
       <ion-col size="12" class="ion-align-self-center">
         <ion-text color="medium">
           <h1>You are not currently assigned to an event!</h1>
@@ -85,9 +85,62 @@
     <ng-template #current>
       <ion-row class="ion-align-items-center">
         <ion-col size="12" class="ion-align-self-center">
-          <ion-text color="medium">
-            <h1>You have accepted an event! </h1>
-          </ion-text>
+          <ion-card *ngIf="event; else loading">
+            <ion-card-header color="light">
+              <ion-card-title color="dark">
+                Response Request
+                <ion-badge *ngIf="event.Severity == 'Mild'" color="secondary">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Moderate'" color="tertiary">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Severe'" color="warning">{{event.Severity}}</ion-badge>
+                <ion-badge *ngIf="event.Severity == 'Urgent'" color="danger">{{event.Severity}}</ion-badge>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <!-- Event details -->
+              <ion-item>
+                <div id="map_canvas"></div>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">
+                  <p>Location</p>
+                </ion-label>
+                <ion-text>
+                  <p color="dark">
+                    {{event.Location}}
+                  </p>
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">
+                  <p>Description</p>
+                </ion-label>
+                <ion-text>
+                  <p color="dark">
+                    {{event.Description}}
+                  </p>
+                </ion-text>
+              </ion-item>
+              <ion-item slot="start">
+                <ion-label position="stacked">
+                  <p>Victim</p>
+                </ion-label>
+                <ion-text>
+                  <p>Name: {{event.Victim.Name}}</p>
+                </ion-text>
+                <ion-text>
+                  <p>Age: {{event.Victim.Age}}</p>
+                </ion-text>
+                <ion-text>
+                  <p>Gender: {{event.Victim.Sex}}</p>
+                </ion-text>
+              </ion-item>
+              <ion-item>
+                <ion-label position="stacked">External response</ion-label>
+                <ion-text *ngIf="event.externalHelp">Responding</ion-text>
+                <ion-text *ngIf="!event.externalHelp">N/A</ion-text>
+              </ion-item>
+            </ion-card-content>
+          </ion-card>
         </ion-col>
       </ion-row>
     </ng-template>

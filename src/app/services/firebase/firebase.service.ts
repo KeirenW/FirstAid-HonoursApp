@@ -49,6 +49,10 @@ export class FirebaseService {
   getAssignedEvent(value) {
     return this.db.collection('events').doc(value).valueChanges();
   }
+
+  acceptEventAssignment(EventUID, UUID) {
+    this.db.collection('events').doc(EventUID).update({Responder: UUID});
+  }
 }
 
 interface IUser {

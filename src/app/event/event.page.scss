@@ -24,7 +24,16 @@ ion-badge {
     float: right;
 }
 
+ion-col {
+    overflow-y: scroll;
+}
+
 .buttons {
     display: flex;
     justify-content: space-between;
+}
+
+#map_canvas {
+    width: 100%;
+    height: 33vh;
 }
