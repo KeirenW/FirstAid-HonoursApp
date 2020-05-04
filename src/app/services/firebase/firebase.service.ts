@@ -52,12 +52,19 @@ export class FirebaseService {
   }
 
   acceptEventAssignment(EventUID, UUID) {
-    this.db.collection('events').doc(EventUID).update({Responder: UUID});
+    this.db.collection('events').doc(EventUID).update({
+      Responder: UUID,
+      AssignmentState: 2
+    });
     this.db.collection('users').doc(UUID).update({active: false});
   }
 
   rejectEventAssignment(EventUID, UUID) {
-    this.db.collection('events').doc(EventUID).update({Responder: null});
+    this.db.collection('events').doc(EventUID).update({
+      Responder: null,
+      AssignmentState: null
+      }
+    );
     this.db.collection('users').doc(UUID).update({
       assignedEvent: {
         uuid: null,
