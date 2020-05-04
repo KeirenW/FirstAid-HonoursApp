@@ -84,6 +84,7 @@ export class EventPage implements OnInit {
       // Rejected
       console.log('Rejected!');
       // Fire back to admin to get new asignee
+      this.firestore.setAssignedEventAnswer(answer, this.event.UUID);
     }
   }
 

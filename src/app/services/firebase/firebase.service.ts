@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -70,4 +71,16 @@ interface IUser {
   firstName: string;
   surname: string;
   email: string;
+}
+
+interface Event {
+  assignees?: [
+    {
+      response?: boolean;
+      timeNotified?: any,
+      timeResponded?: any,
+      uuid?: string,
+    }
+  ];
+  UUID?: string;
 }
