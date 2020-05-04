@@ -34,17 +34,17 @@ export class RegisterPage implements OnInit {
     } else {
       // Register user then punt to login page
       this.auth.registerUser(this.account).then(value => {
-        console.log(value);
+        console.log('Account: ', this.account);
+        console.log('User = ', this.auth.getCurrentUser());
+        console.log('Value: ', value);
         this.firebase.initialUserSetup({
-          UUID: value.user.uid,
+          uid: this.auth.getCurrentUser(),
           fName: this.account.fName,
           surname: this.account.surname,
           email: value.user.email
-        }).then(go => this.router.navigateByUrl('app/tabs/tab1'));
+        });
       });
     }
-    // TODO errors can occur here still when creating accounts such as:
-      // Firebase may not like the formatting of the email or password etc.
   }
 
 }

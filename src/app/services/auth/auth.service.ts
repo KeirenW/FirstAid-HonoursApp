@@ -25,16 +25,16 @@ export class AuthService {
         console.log('USER UID NULL', this.currentUUID);
       }
     });
-
-
-    this.getCurrentUser();
   }
 
   registerUser(value) {
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
         .then(
-          res => resolve(res),
+          res => {
+            this.currentUUID = res.user.uid;
+            resolve(res);
+          },
           err => reject(err));
     });
   }

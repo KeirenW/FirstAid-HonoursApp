@@ -2,24 +2,26 @@ import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AuthService } from '../auth/auth.service';
 import * as firebase from 'firebase/app';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
 
-  constructor(private db: AngularFirestore, private auth: AuthService) { }
+  constructor(private db: AngularFirestore, private auth: AuthService, private router: Router) { }
 
   initialUserSetup(value) {
-    return this.db.collection('users').doc(value.UUID).set({
+    console.log('initUser: ', value);
+    this.db.collection('users').doc(value.uid).set(Object.assign({
       active: false,
       email: value.email,
       firstName: value.fName,
       surname: value.surname,
       lastLat: '',
       lastLng: '',
-      uuid: value.uuid
-    });
+      uuid: value.uid
+    }, value)).then(() => this.router.navigateByUrl('app/tabs/profile'));
   }
 
   getUserDetails(value) {
